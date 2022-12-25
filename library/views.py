@@ -38,9 +38,9 @@ class BookViewSet(viewsets.ModelViewSet):
         try:
             serializer.is_valid(raise_exception=True)
         except ValidationError as e:
-            if Book.objects.get(title=request.data['title']).publisher != request.data['publisher'] and request.data['genre'] == 'Художественное произведение, переведенное с другого языка':
+            if Book.objects.get(title=request.data['title']).publisher != request.data['publisher'] and request.data['caterogy'] == 'Художественное произведение, переведенное с другого языка':
                 serializer.is_valid()
-            if Book.objects.get(title=request.data['title']).yearofRel != request.data['yearofRel'] and request.data['genre'] == 'учебник':
+            if Book.objects.get(title=request.data['title']).yearofRel != request.data['yearofRel'] and request.data['category'] == 'Учебник':
                 serializer.is_valid()
             else:
                 raise ValidationError(self.errors)
